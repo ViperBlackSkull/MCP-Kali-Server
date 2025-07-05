@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  kali-server:
+    build: .
+    container_name: kali-server
+    ports:
+      - "127.0.0.1:5000:5000"  # Kali API Server port (localhost only)
+    environment:
+      - API_PORT=5000
+      - DEBUG_MODE=0
+    restart: unless-stopped
+    # Security options for network tools
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
